@@ -1,0 +1,27 @@
+# Archivos temporales
+Temp/
+.vs
+.alpackages
+.alcache
+rad.json
+
+# Archivos generados al compilar
+*.navx
+*.app
+*.g.xlf
+
+# Archivos de usuario
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.altemplates
+
+# Opcional: permite que cada desarrollador tenga su docker/entorno distinto
+launch.json
+
+#Archivos externos a la aplicación
+.DS_Store
+Thumbs.db
+*.zip
+

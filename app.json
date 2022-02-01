@@ -1,0 +1,31 @@
+{
+  "id": "1f89981a-e88f-4cbc-b912-3634bdb2f66b",
+  "name": "GeoEco",
+  "publisher": "Default publisher",
+  "version": "0.0.0.1", 
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "download.png",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "19.0.0.0",
+  "idRanges": [
+    {
+      "from": 50000,
+      "to": 50100
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": false
+  },
+  "runtime": "8.0",
+  "features": ["TranslationFile"],
+  "target": "Cloud"
+}
