@@ -14,6 +14,12 @@ tableextension 50000 "AIT Customer Gen_001" extends Customer
             DataClassification = ToBeClassified;
             Caption = 'Customer type', comment = 'ESP="Tipo de Cliente"';
         }
+
+        field(50002; "AIT Suscriber"; Boolean)
+        {
+            Caption = 'Suscriber', comment = 'ESP="Suscriptor"';
+            DataClassification = ToBeClassified;
+        }
     }
 
 }

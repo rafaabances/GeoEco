@@ -1,4 +1,4 @@
-table 50000 "AIT Suscriptores"
+table 50000 "AIT Suscribers"
 {
     DataClassification = ToBeClassified;
 
@@ -37,7 +37,7 @@ table 50000 "AIT Suscriptores"
         field(6; "AIT Date First Subscription"; Date)
         {
             DataClassification = ToBeClassified;
-            Caption = 'Date First Subscription', comment = 'ESP="Fecha 1º Suscripción"';
+            Caption = 'Date First Subscription', comment = 'ESP="Fecha 1ª Suscripción"';
         }
 
         field(7; "AIT Date End Subscription"; Date)
@@ -68,7 +68,7 @@ table 50000 "AIT Suscriptores"
         field(11; "AIT Customer No"; Code[20])
         {
             DataClassification = ToBeClassified;
-            Caption = 'Customer No', comment = 'ESP="nº de Cliente"';
+            Caption = 'Customer No', comment = 'ESP="Nº de Cliente"';
             TableRelation = Customer;
             // no hace falta especificar el campo porque tablerelation 
             // porq solo se hace a l Primary Key, y en el caso de customer solo tiene una (No) 

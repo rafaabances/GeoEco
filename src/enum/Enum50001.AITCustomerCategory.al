@@ -6,7 +6,7 @@ enum 50001 "AIT Customer Category"
     { }
 
     value(1; Subscriber)
-    { }
-
-
+    {
+        Caption = 'Subscriber', comment = 'ESP="Suscriptor"';
+    }
 }
