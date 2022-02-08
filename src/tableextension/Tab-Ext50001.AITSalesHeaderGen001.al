@@ -21,7 +21,7 @@ tableextension 50001 "AIT Sales Header Gen_001" extends "Sales Header"
 
         field(50000; "AIT Suscriber Name"; text[100])
         {
-            Caption = 'Suscriber', comment = 'ESP="Suscriptor"';
+            Caption = 'Suscriber Name', comment = 'ESP="Nombre Suscriptor"';
             DataClassification = ToBeClassified;
         }
 
