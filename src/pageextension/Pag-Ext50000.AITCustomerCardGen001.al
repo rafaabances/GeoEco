@@ -14,7 +14,14 @@ pageextension 50000 "AIT Customer Card Gen_001" extends "Customer Card"
                 field("AIT Suscriber"; rec."AIT Suscriber")
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
+
+                field("AIT Suscriber Name"; Rec."AIT Suscriber Name")
+                {
+                    ApplicationArea = All;
+                }
+
 
                 field("AIT Customer Category"; Rec."AIT Customer Category")
                 {

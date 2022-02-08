@@ -19,6 +19,13 @@ tableextension 50000 "AIT Customer Gen_001" extends Customer
         {
             Caption = 'Suscriber', comment = 'ESP="Suscriptor"';
             DataClassification = ToBeClassified;
+            Editable = false;
+        }
+
+        field(50003; "AIT Suscriber Name"; text[100])
+        {
+            Caption = 'Suscriber Name', comment = 'ESP="Nombre Suscriptor"';
+            DataClassification = ToBeClassified;
         }
     }
 
