@@ -69,25 +69,43 @@ page 50000 "AIT Subscribers List"
                     ApplicationArea = All;
                 }
 
+                field("AIT Customer Created"; rec."AIT Customer Created")
+                {
+                    ApplicationArea = All;
+                }
+
+
             }
         }
     }
 
-    // actions
-    // {
-    //     area(Processing)
-    //     {
-    //         action(ActionName)
-    //         {
-    //             ApplicationArea = All;
+    actions
+    {
+        area(Processing)
+        {
+            action("Customer Creation")
+            {
+                ApplicationArea = All;
+                Caption = 'Customer Creation', comment = 'ESP="Creación de clientes"';
 
-    //             trigger OnAction()
-    //             begin
 
-    //             end;
-    //         }
-    //     }
-    // }
+                trigger OnAction()
+                var
+                    Crearcliente: Codeunit "AIT Crear Clientes/Suscriptor";
+                    Suscribers: Record "AIT Suscribers";
+                begin
+                    Suscribers.Reset();
+                    Suscribers.SetRange("AIT Customer Created", false);
+                    if Suscribers.FindSet() then
+                        repeat
+                            Suscribers."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(Suscribers);
+                            Suscribers."AIT Customer Created" := true;
+                            suscribers.Modify();
+                        until Suscribers.Next() = 0;
+                end;
+            }
+        }
+    }
 
     var
 

@@ -84,19 +84,39 @@ page 50001 "AIT Suscribers Card"
     }
 
 
-    // actions
-    // {
-    //     area(Processing)
-    //     {
-    //         action(ActionName)
-    //         {
-    //             ApplicationArea = All;
+    actions
+    {
+        area(Processing)
+        {
+            action("Customer Creation")
+            {
+                ApplicationArea = All;
+                Caption = 'Customer Creation', comment = 'ESP="Creación de clientes"';
 
-    //             trigger OnAction()
-    //             begin
 
-    //             end;
-    //         }
-    //     }
-    // }
+                trigger OnAction()
+                var
+                    Crearcliente: Codeunit "AIT Crear Clientes/Suscriptor";
+                    Suscribers: Record "AIT Suscribers";
+                    Error1: label 'Ese cliente ya ha sido creado';
+                begin
+                    Suscribers.Reset();
+                    Suscribers.SetRange("AIT Primary Key", Rec."AIT Primary Key");
+                    // Suscribers.setrange("AIT Customer Created", false); // forma 1
+                    if Suscribers.FindSet() then begin
+                        // if Suscribers."AIT Customer Created" = true then // forma 3
+                        //     Error(Error1);
+                        rec.TestField("AIT Customer Created", true); //  forma 2 (comprobar si funciona con true o false)
+                        rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(Suscribers);
+                        rec."AIT Customer Created" := true;
+                        rec.Modify();
+                    end;
+                    // else (si se usa se quita el ; del end)
+                    //     Message(Error1); // forma 1
+
+                end;
+            }
+        }
+    }
+
 }

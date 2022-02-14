@@ -57,5 +57,4 @@ pageextension 50011 "AIT Sales Credit Memo Gen_001" extends "Sales Credit Memo"
         CurrPage.Update();
 
     end;
-
 }

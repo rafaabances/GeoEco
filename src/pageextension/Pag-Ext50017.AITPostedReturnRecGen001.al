@@ -23,9 +23,8 @@ pageextension 50017 "AIT Posted Return Rec Gen_001" extends "Posted Return Recei
         }
     }
 
-    var // Hace falta ponerlo en registradas? 
+    var // TODO No Hace falta ponerlo en registradas salvo en el aftergetrecord (borrar trigger insert y modify)
         IsSuscriber: Boolean;
-
 
 
     trigger OnAfterGetRecord()
@@ -33,25 +32,5 @@ pageextension 50017 "AIT Posted Return Rec Gen_001" extends "Posted Return Recei
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-
-    end;
-
-
-    trigger OnInsertRecord(myBoolean: Boolean): Boolean
-    var
-        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
-    begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
-
-    end;
-
-    trigger OnModifyRecord(): Boolean
-    var
-        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
-    begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
-
     end;
 }

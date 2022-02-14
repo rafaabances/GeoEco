@@ -73,6 +73,12 @@ table 50000 "AIT Suscribers"
             // no hace falta especificar el campo porque tablerelation 
             // porq solo se hace a l Primary Key, y en el caso de customer solo tiene una (No) 
         }
+
+        field(12; "AIT Customer Created"; Boolean)
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Customer Created', comment = 'ESP="Cliente Creado"';
+        }
     }
 
     keys
@@ -83,4 +89,12 @@ table 50000 "AIT Suscribers"
         }
     }
 
+    trigger OnInsert()
+    var
+        Crearcliente: Codeunit "AIT Crear Clientes/Suscriptor";
+    begin
+        rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(rec);
+        rec."AIT Customer Created" := true;
+        rec.Modify();
+    end;
 }
