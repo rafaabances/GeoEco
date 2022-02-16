@@ -27,4 +27,23 @@ pageextension 50001 "AIT Customer List Gen_001" extends "Customer List"
             }
         }
     }
+    actions
+    {
+        addafter(Reports)
+        {
+            action("Blocked Customer Without Suscriptor")
+            {
+                ApplicationArea = All;
+                Caption = 'Blocked Customer Without Suscriptor', comment = 'ESP="Bloquear Clientes sin Suscriptor"';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Stop;
+
+                RunObject = report "AIT Block Cust. without Susc.";
+            }
+        }
+    }
+
+
 }

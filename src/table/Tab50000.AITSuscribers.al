@@ -89,12 +89,17 @@ table 50000 "AIT Suscribers"
         }
     }
 
-    trigger OnInsert()
+    trigger OnDelete()
     var
-        Crearcliente: Codeunit "AIT Crear Clientes/Suscriptor";
+        customer: Record Customer;
     begin
-        rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(rec);
-        rec."AIT Customer Created" := true;
-        rec.Modify();
+        customer.Reset();
+        customer.SetRange("No.", "AIT Customer No");
+        if customer.FindSet() then begin
+            customer.Blocked := customer.Blocked::All;
+            customer.Modify();
+        end;
+
     end;
+
 }

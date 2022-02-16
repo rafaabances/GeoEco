@@ -92,6 +92,7 @@ page 50001 "AIT Suscribers Card"
             {
                 ApplicationArea = All;
                 Caption = 'Customer Creation', comment = 'ESP="Creación de clientes"';
+                Image = NewCustomer;
 
 
                 trigger OnAction()
@@ -106,7 +107,7 @@ page 50001 "AIT Suscribers Card"
                     if Suscribers.FindSet() then begin
                         // if Suscribers."AIT Customer Created" = true then // forma 3
                         //     Error(Error1);
-                        rec.TestField("AIT Customer Created", true); //  forma 2 (comprobar si funciona con true o false)
+                        rec.TestField("AIT Customer Created", false); //  forma 2 (comprobar si funciona con true o false)
                         rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(Suscribers);
                         rec."AIT Customer Created" := true;
                         rec.Modify();
@@ -116,7 +117,33 @@ page 50001 "AIT Suscribers Card"
 
                 end;
             }
+
+            action("Customer Card")
+            {
+                ApplicationArea = All;
+                Caption = 'Customer Card', comment = 'ESP="Ficha Clientes"';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Customer;
+                RunObject = page "Customer Card";
+                RunPageLink = "No." = field("AIT Customer No");
+
+            }
         }
     }
 
+    trigger OnClosePage()
+    var
+        Customer: Record Customer;
+        Crearcliente: Codeunit "AIT Crear Clientes/Suscriptor";
+    begin
+        Customer.Reset();
+        Customer.SetRange("No.", Rec."AIT Customer No");
+        if not Customer.FindSet() then begin
+            rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(rec);
+            rec."AIT Customer Created" := true;
+            rec.Modify();
+        end;
+    end;
 }

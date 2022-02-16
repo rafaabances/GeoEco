@@ -87,7 +87,9 @@ page 50000 "AIT Subscribers List"
             {
                 ApplicationArea = All;
                 Caption = 'Customer Creation', comment = 'ESP="Creación de clientes"';
-
+                Image = NewCustomer;
+                Promoted = true;
+                PromotedCategory = Process;
 
                 trigger OnAction()
                 var
