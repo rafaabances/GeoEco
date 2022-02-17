@@ -28,7 +28,7 @@ report 50000 "AIT Block Cust. without Susc."
                 suscriptor.Reset();
                 suscriptor.setrange("AIT Customer No", "No.");
                 if not suscriptor.FindSet() then begin
-                    Customer.Blocked := Blocked::All;
+                    Customer.Blocked := Blocked::All; // se puede omitir customer en customer.Blocked::ALL porque estamos en su DataItem.
                     customer.Modify();
                     // HasValue := true; // manera 2 sirve para ver que ha llegado al último y para quedarte con el valor del último ( último nº de factura)
                 end;
