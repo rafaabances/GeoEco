@@ -45,7 +45,7 @@ pageextension 50011 "AIT Sales Credit Memo Gen_001" extends "Sales Credit Memo"
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 
@@ -54,7 +54,7 @@ pageextension 50011 "AIT Sales Credit Memo Gen_001" extends "Sales Credit Memo"
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 }

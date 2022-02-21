@@ -13,7 +13,7 @@ report 50000 "AIT Block Cust. without Susc."
             DataItemTableView = where("AIT Suscriber" = const(true));
             trigger OnPreDataItem()
             begin
-                HasValue := false; //manera 1 para saber si ha entrado 
+                HasValue := false;
                 Customer.SetRange(Blocked, Blocked::" ");
             end;
 
@@ -21,21 +21,15 @@ report 50000 "AIT Block Cust. without Susc."
             var
                 suscriptor: Record "AIT Suscribers";
             begin
-                if HasValue = false then // manera 1
-                    HasValue := true; // manera 1
-                // HasValue := false; // manera 2
-
                 suscriptor.Reset();
                 suscriptor.setrange("AIT Customer No", "No.");
                 if not suscriptor.FindSet() then begin
                     Customer.Blocked := Blocked::All; // se puede omitir customer en customer.Blocked::ALL porque estamos en su DataItem.
                     customer.Modify();
-                    // HasValue := true; // manera 2 sirve para ver que ha llegado al último y para quedarte con el valor del último ( último nº de factura)
+                    if HasValue = false then
+                        HasValue := true;
                 end;
-
             end;
-
-
         }
     }
     var
@@ -63,4 +57,3 @@ report 50000 "AIT Block Cust. without Susc."
 
     end;
 }
-

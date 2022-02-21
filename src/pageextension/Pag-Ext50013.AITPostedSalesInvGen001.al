@@ -42,7 +42,7 @@ pageextension 50013 "AIT Posted Sales Inv Gen_001" extends "Posted Sales Invoice
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 
@@ -51,7 +51,7 @@ pageextension 50013 "AIT Posted Sales Inv Gen_001" extends "Posted Sales Invoice
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 }

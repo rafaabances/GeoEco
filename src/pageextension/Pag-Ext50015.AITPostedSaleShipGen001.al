@@ -43,7 +43,7 @@ pageextension 50015 "AIT Posted Sale Ship Gen_001" extends "Posted Sales Shipmen
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 
@@ -52,7 +52,7 @@ pageextension 50015 "AIT Posted Sale Ship Gen_001" extends "Posted Sales Shipmen
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 }

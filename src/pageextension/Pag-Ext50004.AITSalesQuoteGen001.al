@@ -33,7 +33,6 @@ pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-
     end;
 
 
@@ -42,7 +41,7 @@ pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        // //CurrPage.Update(); // en este caso no hace falta actualizar la página, en otras ocasiones para que veas el resultado del código ( ej campos de visibilidad ) es necesario actualizar la página vía código.
 
     end;
 
@@ -51,7 +50,6 @@ pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
-
+        // //CurrPage.Update();
     end;
 }

@@ -42,7 +42,7 @@ pageextension 50009 "AIT Sales Return Order Gen_001" extends "Sales Return Order
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 
@@ -51,7 +51,7 @@ pageextension 50009 "AIT Sales Return Order Gen_001" extends "Sales Return Order
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
-        CurrPage.Update();
+        //CurrPage.Update();
 
     end;
 
