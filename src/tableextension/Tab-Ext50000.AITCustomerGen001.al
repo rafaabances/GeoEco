@@ -13,6 +13,28 @@ tableextension 50000 "AIT Customer Gen_001" extends Customer
         {
             DataClassification = ToBeClassified;
             Caption = 'Customer type', comment = 'ESP="Tipo de Cliente"';
+            trigger OnValidate()
+            var
+                Suscriptor: record "AIT Suscribers";
+            begin
+                Suscriptor.Reset();
+                Suscriptor.SetRange("AIT Customer No", "No.");
+                if Suscriptor.FindSet() then begin
+                    Suscriptor."AIT Customer Type" := "AIT Customer Type";
+                    Suscriptor.Modify();
+
+                    case "AIT Customer Type" of
+                        "AIT Customer Type"::Premium:
+                            "Customer Price Group" := 'Premium';
+                        "AIT Customer Type"::Silver:
+                            "Customer Price Group" := 'Silver';
+                        "AIT Customer Type"::Bronze:
+                            "Customer Price Group" := 'Bronze';
+
+                    end;
+                end;
+
+            end;
         }
 
         field(50002; "AIT Suscriber"; Boolean)

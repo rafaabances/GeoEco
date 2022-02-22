@@ -32,7 +32,7 @@ pageextension 50019 "AIT Posted Sal Cr Mem Gen_001" extends "Posted Sales Credit
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
 
     end;
 
@@ -41,7 +41,7 @@ pageextension 50019 "AIT Posted Sal Cr Mem Gen_001" extends "Posted Sales Credit
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
         //CurrPage.Update();
 
     end;
@@ -50,7 +50,7 @@ pageextension 50019 "AIT Posted Sal Cr Mem Gen_001" extends "Posted Sales Credit
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
         //CurrPage.Update();
 
     end;

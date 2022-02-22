@@ -35,7 +35,7 @@ pageextension 50011 "AIT Sales Credit Memo Gen_001" extends "Sales Credit Memo"
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
 
     end;
 
@@ -44,7 +44,7 @@ pageextension 50011 "AIT Sales Credit Memo Gen_001" extends "Sales Credit Memo"
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
         //CurrPage.Update();
 
     end;
@@ -53,7 +53,7 @@ pageextension 50011 "AIT Sales Credit Memo Gen_001" extends "Sales Credit Memo"
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
         //CurrPage.Update();
 
     end;

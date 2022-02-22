@@ -3,6 +3,10 @@ pageextension 50000 "AIT Customer Card Gen_001" extends "Customer Card"
     layout
     {
 
+        modify("Customer Price Group")
+        {
+            Editable = not Rec."AIT Suscriber";
+        }
         addafter(General)
         {
             group(Suscribers)
@@ -56,5 +60,6 @@ pageextension 50000 "AIT Customer Card Gen_001" extends "Customer Card"
         if Suscribers.FindSet() then
             if Suscribers."AIT Customer Category" = Suscribers."AIT Customer Category"::Subscriber then
                 IsSuscriber := true;
+
     end;
 }

@@ -31,6 +31,6 @@ pageextension 50017 "AIT Posted Return Rec Gen_001" extends "Posted Return Recei
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidad(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
     end;
 }
