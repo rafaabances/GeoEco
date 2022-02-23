@@ -29,7 +29,7 @@ pageextension 50017 "AIT Posted Return Rec Gen_001" extends "Posted Return Recei
 
     trigger OnAfterGetRecord()
     var
-        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
+        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
     end;

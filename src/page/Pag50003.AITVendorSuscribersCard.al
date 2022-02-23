@@ -1,10 +1,10 @@
-page 50001 "AIT Suscribers Card"
+page 50003 "AIT Vendor Suscribers Card"
 {
-    Caption = 'Ficha Suscriptores GeoEco';
+    Caption = 'Ficha Proveedores Suscriptores GeoEco';
     PageType = Card;
     // ApplicationArea = All;
     // UsageCategory = Administration;
-    SourceTable = "AIT Suscribers";
+    SourceTable = "AIT Vendor Suscribers";
 
     layout
     {
@@ -37,42 +37,43 @@ page 50001 "AIT Suscribers Card"
             group(Dates)
             {
                 Caption = 'Dates', comment = 'ESP="Fechas"';
-                field("AIT Date First Subscription"; Rec."AIT Date First Subscription")
+
+                field("AIT Date First Purchase"; Rec."AIT Date First Purchase")
                 {
                     ApplicationArea = All;
                 }
 
-                field("AIT Date End Subscription"; Rec."AIT Date End Subscription")
+                field("AIT Date End Purchasing"; Rec."AIT Date End Purchasing")
                 {
                     ApplicationArea = All;
                 }
 
             }
 
-            group("Suscription Details")
+            group("Suscription Vendor Details")
             {
 
-                Caption = 'Suscription Details', comment = 'ESP="Detalles de Suscripción"';
+                Caption = 'Suscription Vendor Details', comment = 'ESP="Detalles de Proveedor de Suscripción"';
                 // field("AIT Pay Plan"; Rec."AIT Pay Plan")
                 // {
                 //     ApplicationArea = All;
                 // }
 
-                field("AIT Customer Category"; Rec."AIT Customer Category")
+                field("AIT Vendor Category"; Rec."AIT Vendor Category")
                 {
                     ApplicationArea = All;
                 }
 
-                field("AIT Customer Type"; Rec."AIT Customer Type")
+                field("AIT Vendor Type"; Rec."AIT Vendor Type")
                 {
                     ApplicationArea = All;
                 }
             }
 
-            group("Customer Relation")
+            group("Vendor Relation")
             {
-                Caption = 'Customer Relation', comment = 'ESP="Relación Nº Cliente"';
-                field("AIT Customer No"; Rec."AIT Customer No")
+                Caption = 'Vendor Relation', comment = 'ESP="Relación Nº Proveedor"';
+                field("AIT Vendor No"; rec."AIT Vendor No")
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -88,18 +89,18 @@ page 50001 "AIT Suscribers Card"
     {
         area(Processing)
         {
-            action("Customer Creation")
+            action("Vendor Creation")
             {
                 ApplicationArea = All;
-                Caption = 'Customer Creation', comment = 'ESP="Creación de clientes"';
-                Image = NewCustomer;
+                Caption = 'vendor Creation', comment = 'ESP="Creación de proveedores"';
+                Image = Vendor;
 
 
                 trigger OnAction()
                 var
-                    Crearcliente: Codeunit "AIT Crear Cli y pro/Suscriptor";
-                    Suscribers: Record "AIT Suscribers";
-                    Error1: label 'Ese cliente ya ha sido creado';
+                    CrearProveedor: Codeunit "AIT Crear Cli y pro/Suscriptor";
+                    Suscribers: Record "AIT Vendor Suscribers";
+                    Error1: label 'Ese proveedor ya ha sido creado';
                 begin
                     Suscribers.Reset();
                     Suscribers.SetRange("AIT Primary Key", Rec."AIT Primary Key");
@@ -107,9 +108,9 @@ page 50001 "AIT Suscribers Card"
                     if Suscribers.FindSet() then begin
                         // if Suscribers."AIT Customer Created" = true then // forma 3
                         //     Error(Error1);
-                        rec.TestField("AIT Customer Created", false); //  forma 2 (comprobar si funciona con true o false)
-                        rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(Suscribers);
-                        rec."AIT Customer Created" := true;
+                        rec.TestField("AIT Vendor Created", false); //  forma 2 (comprobar si funciona con true o false)
+                        rec."AIT Vendor No" := CrearProveedor.CrearProveedoresPorSuscriptor(Suscribers);
+                        rec."AIT vendor Created" := true;
                         rec.Modify();
                     end;
                     // else (si se usa se quita el ; del end)
@@ -118,16 +119,16 @@ page 50001 "AIT Suscribers Card"
                 end;
             }
 
-            action("Customer Card")
+            action("Vendor Card")
             {
                 ApplicationArea = All;
-                Caption = 'Customer Card', comment = 'ESP="Ficha Clientes"';
+                Caption = 'Vendor Card', comment = 'ESP="Ficha Proveedores"';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
-                Image = Customer;
-                RunObject = page "Customer Card";
-                RunPageLink = "No." = field("AIT Customer No");
+                Image = Vendor;
+                RunObject = page "Vendor Card";
+                RunPageLink = "No." = field("AIT Vendor No");
 
             }
         }
@@ -135,14 +136,14 @@ page 50001 "AIT Suscribers Card"
 
     trigger OnClosePage()
     var
-        Customer: Record Customer;
-        Crearcliente: Codeunit "AIT Crear Cli y pro/Suscriptor";
+        Vendor: Record Vendor;
+        CrearProveedor: Codeunit "AIT Crear Cli y pro/Suscriptor";
     begin
-        Customer.Reset();
-        Customer.SetRange("No.", Rec."AIT Customer No");
-        if not Customer.FindSet() then begin
-            rec."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(rec);
-            rec."AIT Customer Created" := true;
+        Vendor.Reset();
+        Vendor.SetRange("No.", Rec."AIT Vendor No");
+        if not Vendor.FindSet() then begin
+            rec."AIT Vendor No" := CrearProveedor.CrearProveedoresPorSuscriptor(rec);
+            rec."AIT Vendor Created" := true;
             rec.Modify();
         end;
     end;

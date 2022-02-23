@@ -1,16 +1,16 @@
-page 50000 "AIT Subscribers List"
+page 50002 "AIT Vendor Suscriber List"
 {
-    Caption = 'Lista Suscriptores GeoEco';
+    Caption = 'Lista Proveedores Suscriptores GeoEco';
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = "AIT Suscribers";
+    SourceTable = "AIT Vendor Suscribers";
     Editable = false;
     DeleteAllowed = false;
     InsertAllowed = false;
     ModifyAllowed = false;
 
-    CardPageId = "AIT Suscribers Card";
+    CardPageId = "AIT Vendor Suscribers Card";
 
     layout
     {
@@ -38,12 +38,12 @@ page 50000 "AIT Subscribers List"
                     ApplicationArea = All;
                 }
 
-                field("AIT Date First Subscription"; Rec."AIT Date First Subscription")
+                field("AIT Date First Purchase"; Rec."AIT Date First Purchase")
                 {
                     ApplicationArea = All;
                 }
 
-                field("AIT Date End Subscription"; Rec."AIT Date End Subscription")
+                field("AIT Date End Purchasing"; Rec."AIT Date End Purchasing")
                 {
                     ApplicationArea = All;
                 }
@@ -53,23 +53,23 @@ page 50000 "AIT Subscribers List"
                 //     ApplicationArea = All;
                 // }
 
-                field("AIT Customer Category"; Rec."AIT Customer Category")
+                field("AIT Vendor Category"; Rec."AIT Vendor Category")
                 {
                     ApplicationArea = All;
                 }
 
-                field("AIT Customer Type"; Rec."AIT Customer Type")
+                field("AIT Vendor Type"; Rec."AIT Vendor Type")
                 {
                     ApplicationArea = All;
                     StyleExpr = StyleText;
                 }
 
-                field("AIT Customer No"; Rec."AIT Customer No")
+                field("AIT Vendor No"; Rec."AIT Vendor No")
                 {
                     ApplicationArea = All;
                 }
 
-                field("AIT Customer Created"; rec."AIT Customer Created")
+                field("AIT Vendor Created"; Rec."AIT Vendor Created")
                 {
                     ApplicationArea = All;
                 }
@@ -83,25 +83,25 @@ page 50000 "AIT Subscribers List"
     {
         area(Processing)
         {
-            action("Customer Creation")
+            action("Vendor Creation")
             {
                 ApplicationArea = All;
-                Caption = 'Customer Creation', comment = 'ESP="Creación de clientes"';
-                Image = NewCustomer;
+                Caption = 'Vendor Creation', comment = 'ESP="Creación de Proveedores"';
+                Image = Vendor;
                 Promoted = true;
                 PromotedCategory = Process;
 
                 trigger OnAction()
                 var
-                    Crearcliente: Codeunit "AIT Crear Cli y pro/Suscriptor";
-                    Suscribers: Record "AIT Suscribers";
+                    CrearProveedor: Codeunit "AIT Crear Cli y pro/Suscriptor";
+                    Suscribers: Record "AIT Vendor Suscribers";
                 begin
                     Suscribers.Reset();
-                    Suscribers.SetRange("AIT Customer Created", false);
+                    Suscribers.SetRange("AIT Vendor Created", false);
                     if Suscribers.FindSet() then
                         repeat
-                            Suscribers."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(Suscribers);
-                            Suscribers."AIT Customer Created" := true;
+                            Suscribers."AIT Vendor No" := CrearProveedor.CrearProveedoresPorSuscriptor(Suscribers);
+                            Suscribers."AIT Vendor Created" := true;
                             suscribers.Modify();
                         until Suscribers.Next() = 0;
                 end;
@@ -116,25 +116,17 @@ page 50000 "AIT Subscribers List"
 
     trigger OnAfterGetRecord()
     begin
-        case rec."AIT Customer Type" of
-            rec."AIT Customer Type"::Premium:
+        case rec."AIT Vendor Type" of
+            rec."AIT Vendor Type"::"Big Vendor":
                 StyleText := 'Favorable';
-            rec."AIT Customer Type"::Silver:
+            rec."AIT Vendor Type"::"Medium Vendor":
                 StyleText := 'Ambiguous';
-            rec."AIT Customer Type"::Bronze:
+            rec."AIT Vendor Type"::"Little Vendor":
                 StyleText := 'Unfavorable';
             else
                 StyleText := 'StandardAccent';
         end;
 
     end;
-    // if rec."AIT Customer Type" = rec."AIT Customer Type"::Premium then
-    //     StyleText := 'Favorable'
-    // else
-    //     if rec."AIT Customer Type" = rec."AIT Customer Type"::Silver then
-    //         StyleText := 'Ambiguous'
-    //     else
-    //         if rec."AIT Customer Type" = rec."AIT Customer Type"::Bronze then
-    //             StyleText := 'Unfavorable';
 
 }

@@ -1,4 +1,4 @@
-codeunit 50000 "AIT Visibilidad Suscriptor"
+codeunit 50000 "AIT Visibilidad Sus cli y Prov"
 {
     procedure Visibilidadventa(SellToCustomerNo: code[20]): Boolean
     var
@@ -16,21 +16,21 @@ codeunit 50000 "AIT Visibilidad Suscriptor"
         exit(false);
     end;
 
-    // procedure Visibilidadcompra(SellToVendorNo: code[20]): Boolean
-    // var
-    //     vendor: Record Vendor;
-    // begin
-    //     vendor.Reset();
-    //     vendor.SetRange("No.", SellToVendorNo);
-    //     vendor.SetLoadFields("AIT Suscriber");
-    //     if vendor.FindSet() then
-    //         if vendor."AIT Suscriber" = true then
-    //             exit(true)
-    //         else
-    //             exit(false);
+    procedure Visibilidadcompra(SellToVendorNo: code[20]): Boolean
+    var
+        vendor: Record Vendor;
+    begin
+        vendor.Reset();
+        vendor.SetRange("No.", SellToVendorNo);
+        vendor.SetLoadFields("AIT Vendor Suscriber");
+        if vendor.FindSet() then
+            if vendor."AIT Vendor Suscriber" = true then
+                exit(true)
+            else
+                exit(false);
 
-    //     exit(false);
-    // end;
+        exit(false);
+    end;
 
 
 

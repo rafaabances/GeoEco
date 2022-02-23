@@ -1,15 +1,15 @@
-pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
+pageextension 50031 "AIT Purchase Quote Gen_001" extends "Purchase Quote"
 {
     layout
     {
-        addafter("Work Description")
+        addafter(Status)
         {
-            group(Suscribers)
+            group("Vendor Suscribers")
             {
                 Visible = IsSuscriber;
-                Caption = 'Suscribers', comment = 'ESP="Suscriptores"';
+                Caption = 'Vendor Suscribers', comment = 'ESP="Proveedor de Suscripciones"';
 
-                field("AIT Suscriber"; Rec."AIT Suscriber")
+                field("AIT Vendor Suscriber"; rec."AIT Vendor Suscriber")
                 {
                     ApplicationArea = All;
                 }
@@ -32,7 +32,7 @@ pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadcompra(rec."Buy-from Vendor No.");
     end;
 
 
@@ -40,7 +40,7 @@ pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadcompra(rec."Buy-from Vendor No.");
         // //CurrPage.Update(); // en este caso no hace falta actualizar la página, en otras ocasiones para que veas el resultado del código ( ej campos de visibilidad ) es necesario actualizar la página vía código.
 
     end;
@@ -49,7 +49,7 @@ pageextension 50004 "AIT Sales Quote Gen_001" extends "Sales Quote"
     var
         VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
-        IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
+        IsSuscriber := VisibilidadSuscriptor.Visibilidadcompra(rec."Buy-from Vendor No.");
         // //CurrPage.Update();
     end;
 }

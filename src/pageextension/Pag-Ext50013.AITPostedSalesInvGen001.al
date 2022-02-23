@@ -30,7 +30,7 @@ pageextension 50013 "AIT Posted Sales Inv Gen_001" extends "Posted Sales Invoice
 
     trigger OnAfterGetRecord()
     var
-        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
+        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
 
@@ -39,7 +39,7 @@ pageextension 50013 "AIT Posted Sales Inv Gen_001" extends "Posted Sales Invoice
 
     trigger OnInsertRecord(myBoolean: Boolean): Boolean
     var
-        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
+        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
         //CurrPage.Update();
@@ -48,7 +48,7 @@ pageextension 50013 "AIT Posted Sales Inv Gen_001" extends "Posted Sales Invoice
 
     trigger OnModifyRecord(): Boolean
     var
-        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Suscriptor";
+        VisibilidadSuscriptor: Codeunit "AIT Visibilidad Sus cli y Prov";
     begin
         IsSuscriber := VisibilidadSuscriptor.Visibilidadventa(rec."Sell-to Customer No.");
         //CurrPage.Update();
