@@ -15,6 +15,11 @@ tableextension 50011 "AIT Item Gen_001" extends Item
                 TestField("AIT Suscription Product", true);
                 TestField("AIT Sales Product", false); // lo mismo que un condicional // si pones false, solo te saca el error cuando es true
 
+                if "AIT Purchase Product" = false then begin
+                    "AIT Sale-Purchase relation" := '';
+                    "AIT Sales Product" := false; /* esto por seguridad, el de suscripción no lo quito 
+                    ya que puede que siga siendo de suscripción*/
+                end;
 
                 // Item.Reset(); // esto es para solo poner que solo haya un producto de ventas
                 // Item.SetRange("AIT Purchase Product", true);
@@ -36,6 +41,13 @@ tableextension 50011 "AIT Item Gen_001" extends Item
             begin
                 TestField("AIT Suscription Product", true);
                 TestField("AIT Purchase Product", false);
+
+                if "AIT Sales Product" = false then begin
+                    "AIT Sale-Purchase relation" := '';
+                    "AIT Purchase Product" := false; /* esto por seguridad, el de suscripción no lo quito 
+                    ya que puede que siga siendo de suscripción*/
+                end;
+
                 // Item.SetRange("AIT Sales Product", true); // esto es para solo poner que solo haya un producto de compras
                 // Item.SetFilter("No.", '<>%1', rec."No.");
                 // if item.FindSet() then
@@ -67,6 +79,10 @@ tableextension 50011 "AIT Item Gen_001" extends Item
                             Error('Este campo solo se puede rellenar con un producto de compras, al ser el producto %1 de vents', rec."No.");
                 end;
 
+                if "AIT Sale-Purchase relation" = '' then begin
+                    "AIT Purchase Product" := false;
+                    "AIT Sales Product" := false;
+                end;
 
             end;
         }
