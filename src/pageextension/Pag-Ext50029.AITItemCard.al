@@ -35,4 +35,12 @@ pageextension 50029 "AIT Item Card" extends "Item Card"
         }
 
     }
+
+    // trigger OnClosePage()
+    // begin
+
+    //     if (rec."AIT Suscription Product" = true) and (rec."AIT Sale-Purchase relation" = '') and (rec."AIT Sales Product" = false) and (rec."AIT Purchase Product" = false) then
+    //         if confirm('El producto es de suscripción, debe asignarle que producto relacionado le corresponde y si es de compras o ventas') = false then
+    //             Error('Si el producto es de suscripción, debe asignarle que producto relacionado le corresponde y si es de compras o ventas');
+    // end;
 }

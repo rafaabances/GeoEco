@@ -65,6 +65,8 @@ tableextension 50011 "AIT Item Gen_001" extends Item
                 Item: Record Item;
             begin
                 TestField("AIT Suscription Product", true);
+                if "AIT Purchase Product" = "AIT Sales Product" then
+                    Error('Antes de asignar el producto relacionado debe decir si el producto es de compras o ventas');
                 Item.Reset();
                 if Item.Get(rec."AIT Sale-Purchase relation") then begin
                     Item.TestField("AIT Suscription Product", true);
