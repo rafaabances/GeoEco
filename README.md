@@ -1,4 +1,4 @@
-## GeoEco Desarrollo Bussines Central
+## GeoEco Desarrollo Business Central
 
 Se trata de un proyecto con el lenguaje de programación C/Al o Al usado para el ERP de Microsoft Busines Central (antiguo Navision), en el cual se va a desarrollar una funcionalidad anexa al core del estandar, por medio de extensiones y creación de diversos objetos, Table Extension, Page Extension, Tables, Pages, CodeUnits y Reports se va a obtener una funcionalidad distinta ya que nos va a permitir crear y automatizar los procesos de suscripción. 
 
