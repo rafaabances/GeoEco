@@ -1,6 +1,6 @@
 codeunit 50003 "AIT Functions Events Gen_001"
 {
-    procedure createJnlAndEntries(ItemRelatedNo: code[20]; LocationCode: code[20]; QuantityToPost: Decimal)
+    procedure createJnlAndEntries(ItemRelatedNo: code[20]; LocationCode: code[20]; QuantityToPost: Decimal; NoDocument: Code[20]; ItemLedgerDocumentType: Enum "Item Ledger Document Type"; AdjustPos: Boolean)
     var
         ItemJournalLine: record "Item Journal Line";
         SalesSetUp: Record "Sales & Receivables Setup";
@@ -31,7 +31,11 @@ codeunit 50003 "AIT Functions Events Gen_001"
         ItemJournalLine."Journal Template Name" := SalesSetUp."AIT Item Susc Journal Template";
         ItemJournalLine."Journal Batch Name" := SalesSetUp."AIT Item Susc Journal Batch";
         ItemJournalLine."Line No." := 10000;
-        ItemJournalLine."Entry Type" := ItemJournalLine."Entry Type"::"Positive Adjmt.";
+        if AdjustPos = true then
+            ItemJournalLine."Entry Type" := ItemJournalLine."Entry Type"::"Positive Adjmt."
+        else
+            ItemJournalLine."Entry Type" := ItemJournalLine."Entry Type"::"Negative Adjmt.";
+
         ItemJournalLine."Document No." := NoSeriesMgt.GetNextNo(ItemJournalBatch."No. Series", WorkDate, false);
 
         ItemJournalLine.Validate("Posting Date", WorkDate);
@@ -39,6 +43,8 @@ codeunit 50003 "AIT Functions Events Gen_001"
         ItemJournalLine.Validate("Location Code", LocationCode); // del PurchaseLine
         ItemJournalLine.Validate(Quantity, QuantityToPost);
         ItemJournalLine.Description := StrSubstNo('Ajuste positivo stock %1', ItemRelatedNo);
+        ItemJournalLine."Document Type" := ItemLedgerDocumentType;
+        ItemJournalLine."AIT Related Document No" := NoDocument;
         ItemJournalLine.Insert();
         ItemJnlPost.Run(ItemJournalLine);
         // ItemJournalLine."Sales Order No." := OrderNoOrigen;
