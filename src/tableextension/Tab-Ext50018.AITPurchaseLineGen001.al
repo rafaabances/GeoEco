@@ -24,6 +24,18 @@ tableextension 50018 "AIT Purchase Line Gen_001" extends "Purchase Line"
                     end;
                 end;
             end;
+
+            trigger OnAfterValidate()
+            var
+                item: record Item;
+            begin
+                if Type = Type::Item then begin
+                    item.Reset();
+                    if item.Get("No.") then // equivale a setrange + findset
+                        if (item."AIT Sales Product" = true) and (item."AIT Suscription Product" = true) then
+                            Error('No puede poner un producto de venta, ya que es una compra');
+                end;
+            end;
         }
         field(50000; "AIT Vendor Suscription Price"; Decimal)
         {

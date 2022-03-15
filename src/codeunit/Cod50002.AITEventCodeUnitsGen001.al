@@ -174,5 +174,21 @@ codeunit 50002 "AIT Event CodeUnits Gen_001"
 
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post", 'OnBeforeCode', '', false, false)]
+    local procedure OnBeforeCode(var ItemJournalLine: Record "Item Journal Line"; var HideDialog: Boolean; var SuppressCommit: Boolean; var IsHandled: Boolean);
+    var
+        SalesReceivablesSetUp: Record "Sales & Receivables Setup";
+    begin
+        SalesReceivablesSetUp.Get();
+        if (ItemJournalLine."Journal Template Name" = SalesReceivablesSetUp."AIT Item Susc Journal Template") and (ItemJournalLine."Journal Batch Name" = SalesReceivablesSetUp."AIT Item Susc Journal Batch") then
+            // if ItemJournalLine."AIT Related Document No" <> '' then
+                HideDialog := true;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", 'OnAfterInitItemLedgEntry', '', false, false)]
+    local procedure OnAfterInitItemLedgEntry(var NewItemLedgEntry: Record "Item Ledger Entry"; var ItemJournalLine: Record "Item Journal Line"; var ItemLedgEntryNo: Integer);
+    begin
+        NewItemLedgEntry."AIT Related Document No" := ItemJournalLine."AIT Related Document No";
+    end;
 
 }
