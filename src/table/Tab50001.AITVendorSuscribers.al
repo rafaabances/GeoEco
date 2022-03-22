@@ -58,7 +58,7 @@ table 50001 "AIT Vendor Suscribers"
             Caption = 'Vendor  Category', comment = 'ESP="Categoría Proveedor"';
         }
 
-        field(10; "AIT Vendor Type"; Enum "AIT Vendor Type")
+        field(10; "AIT Buy Suscription Type"; Enum "AIT Buy Suscription Type")
         {
             DataClassification = ToBeClassified;
             Caption = 'Vendor type', comment = 'ESP="Tipo de Proveedor"';

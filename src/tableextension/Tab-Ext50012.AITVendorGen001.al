@@ -9,7 +9,7 @@ tableextension 50012 "AIT Vendor Gen_001" extends Vendor
             Caption = 'Vendor Category', comment = 'ESP="Categoría Proveedor"';
         }
 
-        field(50001; "AIT Vendor Type"; Enum "AIT Vendor Type")
+        field(50001; "AIT Vendor Type"; Enum "AIT Buy Suscription Type")
         {
             DataClassification = ToBeClassified;
             Caption = 'Vendor type', comment = 'ESP="Tipo de Proveedor"';
@@ -20,7 +20,7 @@ tableextension 50012 "AIT Vendor Gen_001" extends Vendor
                 Suscriptor.Reset();
                 Suscriptor.SetRange("AIT Vendor No", "No.");
                 if Suscriptor.FindSet() then begin
-                    Suscriptor."AIT Vendor Type" := "AIT Vendor Type";
+                    Suscriptor."AIT Buy Suscription Type" := "AIT Vendor Type";
                     Suscriptor.Modify();
 
                     // case "AIT Vendor Type" of /// va por nº de proveedor

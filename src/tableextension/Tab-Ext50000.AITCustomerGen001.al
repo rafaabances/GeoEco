@@ -9,7 +9,7 @@ tableextension 50000 "AIT Customer Gen_001" extends Customer
             Caption = 'Customer Category', comment = 'ESP="Categoría Cliente"';
         }
 
-        field(50001; "AIT Customer Type"; Enum "AIT Customer Type")
+        field(50001; "AIT Customer Type"; Enum "AIT Suscription Type")
         {
             DataClassification = ToBeClassified;
             Caption = 'Customer type', comment = 'ESP="Tipo de Cliente"';
@@ -20,7 +20,7 @@ tableextension 50000 "AIT Customer Gen_001" extends Customer
                 Suscriptor.Reset();
                 Suscriptor.SetRange("AIT Customer No", "No.");
                 if Suscriptor.FindSet() then begin
-                    Suscriptor."AIT Customer Type" := "AIT Customer Type";
+                    Suscriptor."AIT Suscription Type" := "AIT Customer Type";
                     Suscriptor.Modify();
 
                     case "AIT Customer Type" of

@@ -45,14 +45,14 @@ codeunit 50001 "AIT Crear Cli y pro/Suscriptor"
             else
                 Customer."AIT Suscriber Name" := Suscriptor."AIT Name";
         Customer."AIT Customer Category" := Suscriptor."AIT Customer Category";
-        Customer."AIT Customer Type" := Suscriptor."AIT Customer Type"::Premium;
+        Customer."AIT Customer Type" := Suscriptor."AIT Suscription Type"::Premium;
 
-        case Suscriptor."AIT Customer Type" of
-            Suscriptor."AIT Customer Type"::Premium:
+        case Suscriptor."AIT Suscription Type" of
+            Suscriptor."AIT Suscription Type"::Premium:
                 Customer."Customer Price Group" := 'Premium';
-            Suscriptor."AIT Customer Type"::Silver:
+            Suscriptor."AIT Suscription Type"::Silver:
                 Customer."Customer Price Group" := 'Silver';
-            Suscriptor."AIT Customer Type"::Bronze:
+            Suscriptor."AIT Suscription Type"::Bronze:
                 Customer."Customer Price Group" := 'Bronze';
         end;
 
@@ -105,7 +105,7 @@ codeunit 50001 "AIT Crear Cli y pro/Suscriptor"
             else
                 vendor."AIT Suscriber Name" := Suscriptor."AIT Name";
         vendor."AIT Vendor Category" := Suscriptor."AIT Vendor Category";
-        vendor."AIT Vendor Type" := Suscriptor."AIT Vendor Type";
+        vendor."AIT Vendor Type" := Suscriptor."AIT Buy Suscription Type";
         vendor.Modify();
         exit(vendor."No.")
     end;

@@ -58,7 +58,7 @@ page 50000 "AIT Subscribers List"
                     ApplicationArea = All;
                 }
 
-                field("AIT Customer Type"; Rec."AIT Customer Type")
+                field("AIT Customer Type"; Rec."AIT Suscription Type")
                 {
                     ApplicationArea = All;
                     StyleExpr = StyleText;
@@ -116,12 +116,12 @@ page 50000 "AIT Subscribers List"
 
     trigger OnAfterGetRecord()
     begin
-        case rec."AIT Customer Type" of
-            rec."AIT Customer Type"::Premium:
+        case rec."AIT Suscription Type" of
+            rec."AIT Suscription Type"::Premium:
                 StyleText := 'Favorable';
-            rec."AIT Customer Type"::Silver:
+            rec."AIT Suscription Type"::Silver:
                 StyleText := 'Ambiguous';
-            rec."AIT Customer Type"::Bronze:
+            rec."AIT Suscription Type"::Bronze:
                 StyleText := 'Unfavorable';
             else
                 StyleText := 'StandardAccent';

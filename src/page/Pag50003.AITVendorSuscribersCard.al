@@ -64,7 +64,7 @@ page 50003 "AIT Vendor Suscribers Card"
                     ApplicationArea = All;
                 }
 
-                field("AIT Vendor Type"; Rec."AIT Vendor Type")
+                field("AIT Vendor Type"; Rec."AIT Buy Suscription Type")
                 {
                     ApplicationArea = All;
                 }

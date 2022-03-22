@@ -1,4 +1,4 @@
-enum 50005 "AIT Vendor Type"
+enum 50005 "AIT Buy Suscription Type"
 {
     Extensible = true;
 

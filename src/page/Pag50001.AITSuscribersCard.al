@@ -2,6 +2,7 @@ page 50001 "AIT Suscribers Card"
 {
     Caption = 'Ficha Suscriptores GeoEco';
     PageType = Card;
+    PromotedActionCategories = 'New,Process,Report';
     // ApplicationArea = All;
     // UsageCategory = Administration;
     SourceTable = "AIT Suscribers";
@@ -31,6 +32,7 @@ page 50001 "AIT Suscribers Card"
                 {
                     ApplicationArea = All;
                 }
+
 
             }
 
@@ -63,7 +65,7 @@ page 50001 "AIT Suscribers Card"
                     ApplicationArea = All;
                 }
 
-                field("AIT Customer Type"; Rec."AIT Customer Type")
+                field("AIT Customer Type"; Rec."AIT Suscription Type")
                 {
                     ApplicationArea = All;
                 }
@@ -79,6 +81,15 @@ page 50001 "AIT Suscribers Card"
                 }
             }
 
+            group("Historical Lines")
+            {
+                Caption = 'Historical Lines', comment = 'ESP="Lineas del Histórico"';
+                part("Historical Suscriptions"; "AIT Sales Hist. Suscriptions")
+                {
+                    Caption = 'Historical Suscriptions', comment = 'ESP="Historial de Suscripciones"';
+                    SubPageLink = "AIT Suscriptor Primary Key" = field("AIT Suscriptor Primary Key");
+                }
+            }
 
         }
     }
@@ -102,7 +113,7 @@ page 50001 "AIT Suscribers Card"
                     Error1: label 'Ese cliente ya ha sido creado';
                 begin
                     Suscribers.Reset();
-                    Suscribers.SetRange("AIT Primary Key", Rec."AIT Primary Key");
+                    Suscribers.SetRange("AIT Suscriptor Primary Key", Rec."AIT Suscriptor Primary Key");
                     // Suscribers.setrange("AIT Customer Created", false); // forma 1
                     if Suscribers.FindSet() then begin
                         // if Suscribers."AIT Customer Created" = true then // forma 3

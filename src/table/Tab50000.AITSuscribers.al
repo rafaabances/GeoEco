@@ -1,11 +1,12 @@
 table 50000 "AIT Suscribers"
 {
     DataClassification = ToBeClassified;
+    DataCaptionFields = "AIT Name", "AIT Surname 1", "AIT Surname 2";
 
     fields
     {
 
-        field(1; "AIT Primary Key"; bigInteger)
+        field(1; "AIT Suscriptor Primary Key"; bigInteger)
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
@@ -59,10 +60,10 @@ table 50000 "AIT Suscribers"
             // Caption = 'Customer Category', comment = 'ESP="Categoría Cliente" aquí podrias poner otros idiomas'ESP="Text in Spanish",ITA="Text in Italian"'
         }
 
-        field(10; "AIT Customer Type"; Enum "AIT Customer Type")
+        field(10; "AIT Suscription Type"; Enum "AIT Suscription Type")
         {
             DataClassification = ToBeClassified;
-            Caption = 'Customer type', comment = 'ESP="Tipo de Cliente"';
+            Caption = 'Suscription type', comment = 'ESP="Tipo de Suscripción"';
         }
 
         field(11; "AIT Customer No"; Code[20])
@@ -79,11 +80,41 @@ table 50000 "AIT Suscribers"
             DataClassification = ToBeClassified;
             Caption = 'Customer Created', comment = 'ESP="Cliente Creado"';
         }
+
+        field(13; "AIT Total Premium Month"; Integer)
+        {
+            Caption = 'Nº de meses totales con Premium';
+            // DataClassification = ToBeClassified; // incopatible con el flowfield
+            FieldClass = FlowField; // lo convierte en campo calculado.
+
+            CalcFormula = sum("AIT Sales Hist. Suscriptions"."AIT Period of the Suscription" where("AIT Suscriptor Primary Key"/* de AIT Sales Hist. Suscriptions  */= field("AIT Suscriptor Primary Key" /* de ait suscribers */), "AIT Suscription Type" = const(Premium)));
+        }
+
+
+        field(14; "AIT Total Silver Month"; Integer)
+        {
+            Caption = 'Nº de meses totales con Plata';
+            // DataClassification = ToBeClassified; // incopatible con el flowfield
+            FieldClass = FlowField; // lo convierte en campo calculado.
+
+            CalcFormula = sum("AIT Sales Hist. Suscriptions"."AIT Period of the Suscription" where("AIT Suscriptor Primary Key"/* de AIT Sales Hist. Suscriptions  */= field("AIT Suscriptor Primary Key" /* de ait suscribers */), "AIT Suscription Type" = const(Silver)));
+        }
+
+
+        field(15; "AIT Total Bronze Month"; Integer)
+        {
+            Caption = 'Nº de meses totales con Bronce';
+            // DataClassification = ToBeClassified; // incopatible con el flowfield
+            FieldClass = FlowField; // lo convierte en campo calculado.
+
+            CalcFormula = sum("AIT Sales Hist. Suscriptions"."AIT Period of the Suscription" where("AIT Suscriptor Primary Key"/* de AIT Sales Hist. Suscriptions  */= field("AIT Suscriptor Primary Key" /* de ait suscribers */), "AIT Suscription Type" = const(Bronze)));
+        }
+
     }
 
     keys
     {
-        key(Key1; "AIT Primary Key")
+        key(Key1; "AIT Suscriptor Primary Key")
         {
             Clustered = true;
         }

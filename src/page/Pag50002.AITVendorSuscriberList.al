@@ -58,7 +58,7 @@ page 50002 "AIT Vendor Suscriber List"
                     ApplicationArea = All;
                 }
 
-                field("AIT Vendor Type"; Rec."AIT Vendor Type")
+                field("AIT Vendor Type"; Rec."AIT Buy Suscription Type")
                 {
                     ApplicationArea = All;
                     StyleExpr = StyleText;
@@ -116,12 +116,12 @@ page 50002 "AIT Vendor Suscriber List"
 
     trigger OnAfterGetRecord()
     begin
-        case rec."AIT Vendor Type" of
-            rec."AIT Vendor Type"::"Big Vendor":
+        case rec."AIT Buy Suscription Type" of
+            rec."AIT Buy Suscription Type"::"Big Vendor":
                 StyleText := 'Favorable';
-            rec."AIT Vendor Type"::"Medium Vendor":
+            rec."AIT Buy Suscription Type"::"Medium Vendor":
                 StyleText := 'Ambiguous';
-            rec."AIT Vendor Type"::"Little Vendor":
+            rec."AIT Buy Suscription Type"::"Little Vendor":
                 StyleText := 'Unfavorable';
             else
                 StyleText := 'StandardAccent';
