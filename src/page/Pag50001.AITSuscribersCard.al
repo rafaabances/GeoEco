@@ -81,12 +81,12 @@ page 50001 "AIT Suscribers Card"
                 }
             }
 
-            group("Historical Lines")
+            group(" Sales Historical Lines")
             {
-                Caption = 'Historical Lines', comment = 'ESP="Lineas del Histórico"';
-                part("Historical Suscriptions"; "AIT Sales Hist. Suscriptions")
+                Caption = 'Sales Historical Lines', comment = 'ESP="Lineas del Histórico de Venta"';
+                part("Sales Historical Suscriptions"; "AIT Sales Hist. Suscriptions")
                 {
-                    Caption = 'Historical Suscriptions', comment = 'ESP="Historial de Suscripciones"';
+                    Caption = 'Sales Historical Suscriptions', comment = 'ESP="Historial de Suscripciones de Venta"';
                     SubPageLink = "AIT Suscriptor Primary Key" = field("AIT Suscriptor Primary Key");
                 }
             }

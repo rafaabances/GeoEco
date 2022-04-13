@@ -1,9 +1,9 @@
-page 50004 "AIT Sales Hist. Suscriptions"
+page 50006 "AIT Purch Hist. Suscriptions"
 {
-    Caption = 'Historical Suscriptions', comment = 'ESP="Historial de Suscripciones"';
+    Caption = 'Buy Historical Suscriptions', comment = 'ESP="Historial de Suscripciones de Compra"';
     PageType = ListPart;
-    SourceTable = "AIT Sales Hist. Suscriptions";
-    SourceTableView = sorting("AIT Date First Subscription", "AIT Suscription Type");
+    SourceTable = "AIT Purch Hist. Suscriptions";
+    SourceTableView = sorting("AIT Date First Subscription", "AIT Buy Suscription Type");
     // Editable = false;
     // InsertAllowed = false;
     // DeleteAllowed = false;
@@ -22,11 +22,11 @@ page 50004 "AIT Sales Hist. Suscriptions"
                 {
                     ApplicationArea = All;
                 }
-                field("AIT Period of the Suscription"; Rec."AIT Period of the Suscription")
+                field("AIT Period of the Suscription"; Rec."AIT Sum of Type of Vendor Susc")
                 {
                     ApplicationArea = All;
                 }
-                field("AIT Suscription Type"; Rec."AIT Suscription Type")
+                field("AIT Suscription Type"; Rec."AIT Buy Suscription Type")
                 {
                     ApplicationArea = All;
                 }

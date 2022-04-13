@@ -78,6 +78,35 @@ table 50001 "AIT Vendor Suscribers"
             DataClassification = ToBeClassified;
             Caption = 'Vendor Created', comment = 'ESP="Proveedor Creado"';
         }
+
+        field(13; "AIT Total Big"; Integer)
+        {
+            Caption = 'Nº de meses totales con Premium';
+            // DataClassification = ToBeClassified; // incopatible con el flowfield
+            FieldClass = FlowField; // lo convierte en campo calculado.
+
+            CalcFormula = sum("AIT Purch Hist. Suscriptions"."AIT Sum of Type of Vendor Susc" where("AIT Suscriptor Primary Key"/* de AIT Sales Hist. Suscriptions  */= field("AIT Primary Key" /* de ait suscribers */), "AIT Buy Suscription Type" = const("Big Vendor")));
+        }
+
+
+        field(14; "AIT Total Silver Month"; Integer)
+        {
+            Caption = 'Nº de meses totales con Plata';
+            // DataClassification = ToBeClassified; // incopatible con el flowfield
+            FieldClass = FlowField; // lo convierte en campo calculado.
+
+            CalcFormula = sum("AIT Purch Hist. Suscriptions"."AIT Sum of Type of Vendor Susc" where("AIT Suscriptor Primary Key"/* de AIT Sales Hist. Suscriptions  */= field("AIT Primary Key" /* de ait suscribers */), "AIT Buy Suscription Type" = const("Medium Vendor")));
+        }
+
+
+        field(15; "AIT Total Bronze Month"; Integer)
+        {
+            Caption = 'Nº de meses totales con Bronce';
+            // DataClassification = ToBeClassified; // incopatible con el flowfield
+            FieldClass = FlowField; // lo convierte en campo calculado.
+
+            CalcFormula = sum("AIT Purch Hist. Suscriptions"."AIT Sum of Type of Vendor Susc" where("AIT Suscriptor Primary Key"/* de AIT Sales Hist. Suscriptions  */= field("AIT Primary Key" /* de ait suscribers */), "AIT Buy Suscription Type" = const("Little Vendor")));
+        }
     }
 
     keys

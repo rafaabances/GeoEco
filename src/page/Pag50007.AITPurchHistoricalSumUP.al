@@ -1,9 +1,9 @@
-page 50005 "AIT Historical SumUP"
+page 50007 "AIT Purch Historical SumUP"
 {
-    Caption = 'Resumen Histórico';
+    Caption = 'Resumen Histórico Compras';
     PageType = Card;
     Editable = false;
-    SourceTable = "AIT Suscribers";
+    SourceTable = "AIT Vendor Suscribers";
 
 
     layout
@@ -14,7 +14,7 @@ page 50005 "AIT Historical SumUP"
             {
                 Caption = 'Category', comment = 'ESP="Categoría"';
 
-                field("AIT Total Premium Month"; rec."AIT Total Premium Month")
+                field("AIT Total Premium Month"; rec."AIT Total Big")
                 {
                     ApplicationArea = All;
                 }
