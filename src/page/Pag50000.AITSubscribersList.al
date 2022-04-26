@@ -106,6 +106,28 @@ page 50000 "AIT Subscribers List"
                         until Suscribers.Next() = 0;
                 end;
             }
+
+            action("Export Suscribers")
+            {
+                ApplicationArea = All;
+                Caption = 'Export Suscribersn', comment = 'ESP="Exportación de Suscriptores"';
+                Image = Export;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                RunObject = report "AIT Export Suscriptors";
+            }
+
+            action("Import Suscribers")
+            {
+                ApplicationArea = All;
+                Caption = 'Import Suscribersn', comment = 'ESP="Importación de Suscriptores"';
+                Image = Import;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                RunObject = report "AIT Import Suscriptors";
+            }
         }
     }
 

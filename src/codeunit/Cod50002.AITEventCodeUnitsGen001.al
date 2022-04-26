@@ -191,4 +191,103 @@ codeunit 50002 "AIT Event CodeUnits Gen_001"
         NewItemLedgEntry."AIT Related Document No" := ItemJournalLine."AIT Related Document No";
     end;
 
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales-Post", 'OnAfterPostSalesDoc', '', false, false)]
+    local procedure OnAfterPostSalesDoc(var SalesHeader: Record "Sales Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; SalesShptHdrNo: Code[20]; RetRcpHdrNo: Code[20]; SalesInvHdrNo: Code[20]; SalesCrMemoHdrNo: Code[20]; CommitIsSuppressed: Boolean; InvtPickPutaway: Boolean; var CustLedgerEntry: Record "Cust. Ledger Entry"; WhseShip: Boolean; WhseReceiv: Boolean);
+    var
+
+        EmailMessage: Codeunit "Email Message";
+        Email: Codeunit Email;
+
+        ReceiptList: List of [Text];
+        BcList: List of [text];
+        BccList: List of [text];
+
+        Subjet: Text;
+        Body: Text;
+
+        Customer: record Customer;
+
+        MailBody: Label 'Señor/a %1 cuyo código es %2 ha encargado el pedido tal, le adjuntamos gustosamente la factura %3.';
+        MailText: Label 'Sales Invoice %1', comment = 'ESP="Factura Venta %1"';
+
+
+        //solo para el adjunto
+
+        SalesInvoiceReport: report "Standard Sales - Invoice";
+
+        SalesInvHeader: record "Sales Invoice Header";
+
+        InSTR: InStream;
+
+        VarFile: File;
+
+        PdfName: Text;
+
+        FileManagement: Codeunit "File Management";
+
+
+    begin
+
+        if SalesInvHdrNo <> '' then begin
+
+
+            Customer.Reset();
+            Customer.SetRange("No.", SalesHeader."Sell-to Customer No.");
+            if Customer.FindSet() then begin
+                if Customer."E-Mail" <> '' then begin
+
+                    Clear(EmailMessage);
+                    Clear(Email);
+                    Clear(ReceiptList);
+                    Clear(BcList);
+                    Clear(BccList);
+                    Clear(Subjet);
+                    Clear(Body);
+
+                    Subjet := StrSubstNo(MailText, SalesInvHdrNo);
+                    Body := StrSubstNo(MailBody, Customer.name, Customer."No.", SalesInvHdrNo);
+
+                    ReceiptList.Add(Customer."E-Mail");
+                    BcList.Add('rafaelabancesserrate@hotmail.com');
+
+                    if Customer."AIT Suscriber" = true then
+                        BccList.add('ricardo.bolea.m@gmail.com');
+
+                    EmailMessage.Create(ReceiptList, Subjet, Body, false, BcList, BccList);
+
+                    PdfName := FileManagement.ServerTempFileName('pdf');
+                    SalesInvHeader.Reset();
+                    SalesInvHeader.SetRange("No.", SalesInvHdrNo);
+
+                    Clear(SalesInvoiceReport);
+                    SalesInvoiceReport.SetTableView(SalesInvHeader);
+
+                    SalesInvoiceReport.SaveAsPdf(PdfName);
+
+                    Clear(InSTR);
+                    Clear(VarFile);
+
+                    VarFile.Open(PdfName);
+                    VarFile.CreateInStream(InSTR);
+                    EmailMessage.AddAttachment((SalesInvHdrNo + '.pdf'), 'PDF', InSTR);
+                    VarFile.Close();
+
+
+
+                    if Customer."AIT Customer Type" = Customer."AIT Customer Type"::Premium then
+                        Email.Send(EmailMessage)
+                    else
+                        Email.OpenInEditor(EmailMessage);
+
+                end else
+                    Message('No se ha podido enviar el correo porque el cliente %1 no tiene rellenado el campo E-mail', Customer.Name);
+
+            end;
+
+        end;
+    end;
+
+
 }

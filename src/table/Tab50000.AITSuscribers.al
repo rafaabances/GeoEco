@@ -29,7 +29,7 @@ table 50000 "AIT Suscribers"
             Caption = 'Surname 2', comment = 'ESP="Apellido 2"';
         }
 
-        field(5; "AIT ID"; Text[20])
+        field(5; "AIT ID"; Code[20])
         {
             DataClassification = ToBeClassified;
             Caption = 'ID', comment = 'ESP="DNI"';

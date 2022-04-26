@@ -27,5 +27,5 @@
   },
   "runtime": "8.0",
   "features": ["TranslationFile"],
-  "target": "Cloud"
+  "target": "OnPrem"
 }
