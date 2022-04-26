@@ -111,7 +111,7 @@ page 50000 "AIT Subscribers List"
             {
                 ApplicationArea = All;
                 Caption = 'Export Suscribersn', comment = 'ESP="Exportación de Suscriptores"';
-                Image = Export;
+                Image = ExportToExcel;
                 Promoted = true;
                 PromotedCategory = Process;
 
@@ -122,11 +122,21 @@ page 50000 "AIT Subscribers List"
             {
                 ApplicationArea = All;
                 Caption = 'Import Suscribersn', comment = 'ESP="Importación de Suscriptores"';
-                Image = Import;
+                Image = ImportExcel;
                 Promoted = true;
                 PromotedCategory = Process;
 
                 RunObject = report "AIT Import Suscriptors";
+            }
+            action("Update Suscribers")
+            {
+                ApplicationArea = All;
+                Caption = 'Update Suscribersn', comment = 'ESP="Actualización de Suscriptores"';
+                Image = Excel;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                RunObject = report "AIT Modify Import Suscriptors";
             }
         }
     }

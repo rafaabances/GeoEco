@@ -108,7 +108,9 @@ report 50002 "AIT Import Suscriptors"
                         Evaluate(SuscriptorTable."AIT Suscription Type", ExcelBuffer."Cell Value as Text");
 
                     SuscriptorTable.Insert();
-                    Crearcliente.CrearClientesPorSuscriptor(SuscriptorTable);
+                    SuscriptorTable."AIT Customer No" := Crearcliente.CrearClientesPorSuscriptor(SuscriptorTable);
+                    SuscriptorTable."AIT Customer Created" := true;
+                    SuscriptorTable.Modify();
                 end else begin
                     LastNoUsed += 1;
                     CSVBuffer.Reset();
@@ -133,7 +135,7 @@ report 50002 "AIT Import Suscriptors"
             LastNoUsed += 1;
             CSVBuffer.Reset();
             CSVBuffer."Line No." := LastNoUsed;
-            CSVBuffer.Value := ExcelBuffer."Cell Value as Text" + ' Ha dejado un registro sin DNI';
+            CSVBuffer.Value := 'Ha dejado un registro sin DNI';
             CSVBuffer.Insert();
         end;
     end;
